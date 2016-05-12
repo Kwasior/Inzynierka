@@ -393,10 +393,11 @@ public class CFB_GUI extends HorizontalLayout implements View {
                 horizontal.setComponentAlignment(image10, Alignment.BOTTOM_RIGHT);
 
                 vertical.addComponents(ekPanel, horizontal);
-                vertical.setHeight("300px");
-                vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
-                vertical.setComponentAlignment(horizontal, Alignment.BOTTOM_RIGHT);
 
+                vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
+                vertical.setComponentAlignment(horizontal, Alignment.TOP_RIGHT);
+
+                vertical.setHeight("430px");
                 vertical2.addComponents(tekstHexPanel, image, wynikPanel);
                 vertical2.setWidth("100%");
 
@@ -413,8 +414,9 @@ public class CFB_GUI extends HorizontalLayout implements View {
             }
             if (!tekstPole2.isEmpty()) {
                 vertical3.addComponents(ekPanel2, image5);
-                vertical3.setSizeUndefined();
-                vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
+                vertical3.setHeight("430px");
+                vertical3.setComponentAlignment(ekPanel2, Alignment.BOTTOM_RIGHT);
+                vertical3.setComponentAlignment(image5, Alignment.TOP_RIGHT);
 
 
                 vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
@@ -424,9 +426,9 @@ public class CFB_GUI extends HorizontalLayout implements View {
             }
             if (!tekstPole3.isEmpty()) {
                 vertical5.addComponents(ekPanel3, image6);
-                vertical5.setSizeUndefined();
-                vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_LEFT);
-
+                vertical5.setHeight("430px");
+                vertical5.setComponentAlignment(ekPanel3, Alignment.BOTTOM_RIGHT);
+                vertical5.setComponentAlignment(image6, Alignment.TOP_RIGHT);
 
                 vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
                 vertical6.setWidth("100%");
@@ -435,8 +437,9 @@ public class CFB_GUI extends HorizontalLayout implements View {
             }
             if (!tekstPole4.isEmpty()) {
                 vertical7.addComponents(ekPanel4, image7);
-                vertical7.setSizeUndefined();
-                vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_LEFT);
+                vertical7.setHeight("430px");
+                vertical7.setComponentAlignment(ekPanel4, Alignment.BOTTOM_RIGHT);
+                vertical7.setComponentAlignment(image7, Alignment.TOP_RIGHT);
 
 
                 vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);

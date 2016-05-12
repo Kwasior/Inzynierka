@@ -239,10 +239,10 @@ public class AES_GUI extends VerticalLayout implements View {
         for (int i = 0; i < 16; i++) {
             tmp[i / 4][i % 4] = enc[(i % 4 * 4 + i / 4)];
         }
-        tekst.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst2.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst3.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst4.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst2.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst3.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst4.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst.addStyleName("Wyniki");
         tekst2.addStyleName("Wyniki");
         tekst3.addStyleName("Wyniki");
@@ -261,10 +261,10 @@ public class AES_GUI extends VerticalLayout implements View {
         for (int i = 0; i < 16; i++) {
             tmp[i / 4][i % 4] = enc[(i % 4 * 4 + i / 4)];
         }
-        tekst5.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst6.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst7.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst8.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst5.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst6.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst7.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst8.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst5.setSizeUndefined();
         tekst5.addStyleName("Wyniki");
         tekst6.addStyleName("Wyniki");
@@ -284,10 +284,10 @@ public class AES_GUI extends VerticalLayout implements View {
         for (int i = 0; i < 16; i++) {
             tmp[i / 4][i % 4] = enc[(i % 4 * 4 + i / 4)];
         }
-        tekst9.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst10.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst11.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst12.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst9.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst10.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst11.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst12.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst9.addStyleName("Wyniki");
         tekst10.addStyleName("Wyniki");
         tekst11.addStyleName("Wyniki");
@@ -304,10 +304,10 @@ public class AES_GUI extends VerticalLayout implements View {
         for (int i = 0; i < 16; i++) {
             tmp[i / 4][i % 4] = enc[(i % 4 * 4 + i / 4)];
         }
-        tekst13.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst14.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst15.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst16.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst13.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst14.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst15.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst16.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst13.addStyleName("Wyniki");
         tekst14.addStyleName("Wyniki");
         tekst15.addStyleName("Wyniki");
@@ -335,10 +335,10 @@ public class AES_GUI extends VerticalLayout implements View {
             tmp[i / 4][i % 4] = roundKeyTmp2[i / 4][i % 4];
         }
 
-        tekst17.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst18.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst19.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst20.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst17.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst18.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst19.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst20.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst17.addStyleName("Wyniki");
         tekst18.addStyleName("Wyniki");
         tekst19.addStyleName("Wyniki");
@@ -356,10 +356,10 @@ public class AES_GUI extends VerticalLayout implements View {
         for (int i = 0; i < 16; i++) {
             tmp[i / 4][i % 4] = enc[(i % 4 * 4 + i / 4)];
         }
-        tekst21.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0]))));
-        tekst22.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1]))));
-        tekst23.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2]))));
-        tekst24.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3]))));
+        tekst21.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[0])).toUpperCase()));
+        tekst22.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[1])).toUpperCase()));
+        tekst23.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[2])).toUpperCase()));
+        tekst24.setValue(spacing(String.valueOf(Hex.encodeHexString(tmp[3])).toUpperCase()));
         tekst21.addStyleName("Wyniki");
         tekst22.addStyleName("Wyniki");
         tekst23.addStyleName("Wyniki");

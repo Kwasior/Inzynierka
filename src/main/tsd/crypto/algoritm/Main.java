@@ -56,7 +56,7 @@ public class Main {
             //	}
             //	System.out.println("ive normalne :" + enc[1]);
             /*for (int j = 0; j < subKeys.length; j++ )
-			{
+            {
 				System.arraycopy(subKeys[j], 0, enc, j * 4, 4);
 			}*/
             System.out.println("iv przed CBC :" + iv);

@@ -10,9 +10,9 @@ import com.vaadin.ui.UI;
 import java.io.File;
 
 
-@Theme ("mytheme")
+@Theme("mytheme")
 
-public class GUI extends UI{
+public class GUI extends UI {
     Navigator navigator;
     protected static final String MAINVIEW = "main";
 
@@ -25,7 +25,7 @@ public class GUI extends UI{
         navigator = new Navigator(this, this);
 
         // Create and register the views
-       // navigator.addView("start", new StartView());
+        // navigator.addView("start", new StartView());
 
         navigator.addView("AES", new AES_GUI());
         navigator.addView("StartView", new StartView());
@@ -35,7 +35,6 @@ public class GUI extends UI{
         navigator.addView("CTR", new CTR_GUI());
         navigator.addView("HMAC", new HMAC_GUI());
         getUI().getNavigator().navigateTo("StartView");
-
 
 
     }

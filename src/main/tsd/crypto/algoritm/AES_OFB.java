@@ -1,4 +1,5 @@
 package main.tsd.crypto.algoritm;
+
 import com.sun.deploy.util.ArrayUtil;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class AES_OFB {
 
     }
 
-    public static byte[] encrypt(byte[] in,byte[] key, byte[] ive){
+    public static byte[] encrypt(byte[] in, byte[] key, byte[] ive) {
         int i;
 
         byte[] iveINOfb = ive;
@@ -24,16 +25,15 @@ public class AES_OFB {
         byte[] bloc2Ofb = new byte[16];
         int counterOfb = 0;
         int counter2Ofb = 0;
-        byte[][] iveTmpOfb = new byte [((key.length / 4) + 6) * 16][((key.length / 4) + 6) * 16];
+        byte[][] iveTmpOfb = new byte[((key.length / 4) + 6) * 16][((key.length / 4) + 6) * 16];
 
-        for (i = 0; i < in.length+1 ; i++) {
+        for (i = 0; i < in.length + 1; i++) {
             if (i > 0 && i % 16 == 0) {
                 counterOfb = 0;
-                blocOfb = xor_func(blocOfb,bloc2Ofb);
-                iveTmpOfb=AES.encrypt(iveINOfb,key);
-                for (int j = 0; j < 16; j++ )
-                {
-                    iveINOfb[j] = iveTmpOfb[4][j+144];
+                blocOfb = xor_func(blocOfb, bloc2Ofb);
+                iveTmpOfb = AES.encrypt(iveINOfb, key);
+                for (int j = 0; j < 16; j++) {
+                    iveINOfb[j] = iveTmpOfb[4][j + 144];
                 }
                 System.arraycopy(blocOfb, 0, tmpOfb, i - 16, blocOfb.length);
                 counter2Ofb++;
@@ -42,15 +42,14 @@ public class AES_OFB {
                 blocOfb[i % 16] = in[i];
                 bloc2Ofb[i % 16] = iveINOfb[i % 16];
                 counterOfb++;
-            }
-            else{
-                blocOfb = xor_func(blocOfb,bloc2Ofb);
-                System.arraycopy(blocOfb, 0, tmpOfb, counter2Ofb*16, counterOfb);
+            } else {
+                blocOfb = xor_func(blocOfb, bloc2Ofb);
+                System.arraycopy(blocOfb, 0, tmpOfb, counter2Ofb * 16, counterOfb);
             }
         }
 
 			/*for (int k = 0 ; k < bloc.length ; k++) {
-					bloc[k] = (byte)(bloc2[k] ^ bloc[k]);
+                    bloc[k] = (byte)(bloc2[k] ^ bloc[k]);
 
 				}*/
 		/*if(bloc.length == 16){
@@ -67,7 +66,7 @@ public class AES_OFB {
         return tmpOfb;
     }
 
-    public static byte[] decrypt(byte[] in,byte[] key, byte[] ive,int length){
+    public static byte[] decrypt(byte[] in, byte[] key, byte[] ive, int length) {
 
         int i;
         byte[] tmp = new byte[in.length];
@@ -77,10 +76,10 @@ public class AES_OFB {
         int counter2 = 0;
 
 
-        for (i = 0; i < in.length+1 ; i++) {
+        for (i = 0; i < in.length + 1; i++) {
             if (i > 0 && i % 16 == 0) {
                 counter = 0;
-                bloc = xor_func(bloc,bloc2);
+                bloc = xor_func(bloc, bloc2);
                 System.arraycopy(bloc, 0, tmp, i - 16, bloc.length);
 
                 counter2++;
@@ -89,10 +88,9 @@ public class AES_OFB {
                 bloc[i % 16] = in[i];
                 bloc2[i % 16] = ive[i % 16];
                 counter++;
-            }
-            else{
-                bloc = xor_func(bloc,bloc2);
-                System.arraycopy(bloc, 0, tmp, counter2*16, counter);
+            } else {
+                bloc = xor_func(bloc, bloc2);
+                System.arraycopy(bloc, 0, tmp, counter2 * 16, counter);
             }
         }
         return tmp;
@@ -111,7 +109,6 @@ public class AES_OFB {
         System.arraycopy(input, 0, tmp, 0, tmp.length);
         return tmp;
     }
-
 
 
 }

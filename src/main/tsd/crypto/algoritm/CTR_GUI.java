@@ -10,6 +10,8 @@ import com.vaadin.ui.*;
 import java.io.File;
 import java.math.BigInteger;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 public class CTR_GUI extends HorizontalLayout implements View {
 
     private final TextField tekstPole = new TextField();
@@ -17,8 +19,10 @@ public class CTR_GUI extends HorizontalLayout implements View {
     private final TextField tekstPole3 = new TextField();
     private final TextField tekstPole4 = new TextField();
 
-    private final TextField kluczPole = new TextField();
-    private final TextField ivPole = new TextField();
+    TextArea calytekstPole = new TextArea("Tekst do zaszyfrowania");
+
+    private final TextField kluczPole = new TextField("Klucz");
+    private final TextField ivPole = new TextField("Licznik");
 
     private final Label wynikPole = new Label();
     private final Label wynikPole2 = new Label();
@@ -50,9 +54,10 @@ public class CTR_GUI extends HorizontalLayout implements View {
     private final Panel tekstHexPanel3 = new Panel();
     private final Panel tekstHexPanel4 = new Panel();
 
-    private final Label counter = new Label();
-    private final Label counter2 = new Label();
-    private final Label counter3 = new Label();
+    Label counter = new Label();
+    Label counter2 = new Label();
+    Label counter3 = new Label();
+    Label counter4 = new Label();
 
     private final Panel counterPanel = new Panel();
     private final Panel counterPanel2 = new Panel();
@@ -61,20 +66,23 @@ public class CTR_GUI extends HorizontalLayout implements View {
     public String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
     public FileResource resource = new FileResource(new File(basepath + "/WEB-INF/images/xor.png"));
     public FileResource resource2 = new FileResource(new File(basepath + "/WEB-INF/images/Ek2_Ofb.png"));
-    public FileResource resource3 = new FileResource(new File(basepath + "/WEB-INF/images/arrow.png"));
+    public FileResource resource3 = new FileResource(new File(basepath + "/WEB-INF/images/arrow3.png"));
+    public FileResource resource4 = new FileResource(new File(basepath + "/WEB-INF/images/EkCFB.png"));
 
-    Image image = new Image("",resource);
-    Image image2 = new Image("",resource);
-    Image image3 = new Image("",resource);
-    Image image4 = new Image("",resource);
+    Image image = new Image("", resource);
+    Image image2 = new Image("", resource);
+    Image image3 = new Image("", resource);
+    Image image4 = new Image("", resource);
 
-    Image image5 = new Image("",resource2);
-    Image image6 = new Image("",resource2);
-    Image image7 = new Image("",resource2);
+    Image image5 = new Image("", resource2);
+    Image image6 = new Image("", resource2);
+    Image image7 = new Image("", resource2);
 
-    Image image8 = new Image("",resource3);
-    Image image9 = new Image("",resource3);
-    Image image10 = new Image("",resource3);
+    Image image8 = new Image("", resource3);
+    Image image9 = new Image("", resource3);
+    Image image10 = new Image("", resource3);
+
+    Image image11 = new Image("", resource4);
 
     HorizontalLayout horizontal = new HorizontalLayout();
 
@@ -110,8 +118,13 @@ public class CTR_GUI extends HorizontalLayout implements View {
 
 
 
-        vertical9.addComponents(kluczPole,ivPole);
+        vertical3.setWidth("78px");
+        vertical5.setWidth("78px");
+        vertical7.setWidth("78px");
 
+        calytekstPole.setWidth("120px");
+        calytekstPole.setWordwrap(true);
+        calytekstPole.setMaxLength(64);
 
 
         setSpacing(true);
@@ -123,6 +136,44 @@ public class CTR_GUI extends HorizontalLayout implements View {
                     @Override
 
                     public void buttonClick(Button.ClickEvent event) {
+                        tekstPole.clear();
+                        tekstPole2.clear();
+                        tekstPole3.clear();
+                        tekstPole4.clear();
+                        if (kluczPole.getValue().length() == 16) {
+                            if (NumberUtils.isNumber(ivPole.getValue().toString())) {
+
+                                String[] calytekstArray = calytekstPole.getValue().split("");
+                                for (int i = 0; i < calytekstArray.length; i++) {
+                                    if (i < 17) {
+                                        String pole1;
+                                        pole1 = calytekstPole.getValue().substring(0, getMin(calytekstPole.getValue().length(), 16));
+                                        tekstPole.setValue(pole1);
+
+                                    }
+                                    if (i < 33 && i >= 16) {
+                                        String pole1;
+                                        pole1 = calytekstPole.getValue().substring(16, getMin(calytekstPole.getValue().length(), 32));
+                                        tekstPole2.setValue(pole1);
+
+                                    }
+                                    if (i < 49 && i >= 32) {
+                                        String pole1;
+                                        pole1 = calytekstPole.getValue().substring(32, getMin(calytekstPole.getValue().length(), 48));
+                                        tekstPole3.setValue(pole1);
+
+                                    }
+                                    if (i < 65 && i >= 48) {
+
+                                        String pole1;
+                                        pole1 = calytekstPole.getValue().substring(48, getMin(calytekstPole.getValue().length(), 64));
+                                        tekstPole4.setValue(pole1);
+
+
+                                    }
+                                }
+                            } else ivPole.setValue("Nieodpowiedni licznik");
+                        } else kluczPole.setValue("Zła dlugość klucza");
 
                         display();
 
@@ -131,23 +182,22 @@ public class CTR_GUI extends HorizontalLayout implements View {
 
                 });
 
-        vertical.setHeight("220px");
-        vertical.addComponents(vertical9,b,ekPanel);
+        vertical9.addComponents(kluczPole, ivPole, calytekstPole, b);
 
-        vertical.setComponentAlignment(vertical9,Alignment.TOP_LEFT);
-        vertical.setComponentAlignment(b,Alignment.TOP_LEFT);
-        vertical.setComponentAlignment(ekPanel,Alignment.BOTTOM_RIGHT);
+
+
         vertical2.addComponents(tekstPole);
         vertical4.addComponents(tekstPole2);
         vertical6.addComponents(tekstPole3);
         vertical8.addComponents(tekstPole4);
 
-        horizontal2.addComponents(vertical,vertical2,vertical3,vertical4,vertical5,vertical6,vertical7,vertical8);
-        horizontal2.setComponentAlignment(vertical3,Alignment.BOTTOM_LEFT);
-        horizontal2.setComponentAlignment(vertical5,Alignment.BOTTOM_LEFT);
-        horizontal2.setComponentAlignment(vertical7,Alignment.BOTTOM_LEFT);
+        horizontal2.addComponents(vertical, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8, vertical9);
+        horizontal2.setComponentAlignment(vertical3, Alignment.BOTTOM_LEFT);
+        horizontal2.setComponentAlignment(vertical5, Alignment.BOTTOM_LEFT);
+        horizontal2.setComponentAlignment(vertical7, Alignment.BOTTOM_LEFT);
 
-        vertical10.addComponents(horizontal2,horizontal8);
+
+        vertical10.addComponents(horizontal2, horizontal8);
 
 
         addComponent(vertical10);
@@ -155,6 +205,8 @@ public class CTR_GUI extends HorizontalLayout implements View {
     }
 
     private void display() {
+
+
         String tekst, tekst2, tekst3, tekst4;
         String wynik, wynik2, wynik3, wynik4;
         int i = 0;
@@ -182,7 +234,7 @@ public class CTR_GUI extends HorizontalLayout implements View {
         for (int m = 0; m < 16; m++) {
             ive[m] = iveTmp[4][m + 144];
         }
-        byte[] wyniktmp = AES_CTR.encrypt(tekst.getBytes(), key.getBytes(),j);
+        byte[] wyniktmp = AES_CTR.encrypt(tekst.getBytes(), key.getBytes(), j);
         if (!tekstPole.isEmpty()) {
 
             for (byte b : wyniktmp) {
@@ -201,6 +253,9 @@ public class CTR_GUI extends HorizontalLayout implements View {
                     wynikPole4.setValue(sb4.toString());
                 }
             }
+            counter4.setValue(String.valueOf(j));
+            counter4.addStyleName("Wyniki");
+
             wynikPanel.setWidth("78px");
             wynikPanel.setContent(wynikPole);
 
@@ -219,77 +274,94 @@ public class CTR_GUI extends HorizontalLayout implements View {
                 for (byte b : ive)
                     sb5.append(String.format("%02X ", b));
                 ekPole.setValue(sb5.toString());
-            }tekstHexPole.setValue(toHex(tekstPole.getValue()));
+            }
+            tekstHexPole.setValue(toHex(tekstPole.getValue()));
+        }
+
             if (!tekstPole2.isEmpty()) {
 
 
-                byte[][] ek22 = AES.encrypt(String.valueOf(j+1).getBytes(), key.getBytes());
+                byte[][] ek22 = AES.encrypt(String.valueOf(j + 1).getBytes(), key.getBytes());
                 for (int m = 0; m < 16; m++) {
                     ive[m] = ek22[4][m + 144];
                 }
                 for (byte b : ive) {
                     sb6.append(String.format("%02X ", b));
                     ekPole2.setValue(sb6.toString());
-                }tekstHexPole2.setValue(toHex(tekstPole2.getValue()));
-                counter.setValue(String.valueOf(j+1));
+                }
+                tekstHexPole2.setValue(toHex(tekstPole2.getValue()));
+                counter.setValue(String.valueOf(j + 1));
                 counter.addStyleName("Wyniki");
                 /*horizontal.setWidth("335px");
                 horizontal.addComponent(image8);
                 horizontal.setComponentAlignment(image8,Alignment.TOP_RIGHT);*/
-                horizontal.addComponents(counterPanel,image8);
+                horizontal.addComponents(counter, image8);
+                horizontal.setComponentAlignment(counter, Alignment.MIDDLE_RIGHT);
+                horizontal.setComponentAlignment(image8, Alignment.MIDDLE_CENTER);
+                //horizontal.setComponentAlignment(counter, Alignment.MIDDLE_CENTER);
                 horizontal5.addComponent(horizontal);
-                horizontal5.setWidth("330px");
-                horizontal5.setComponentAlignment(horizontal,Alignment.MIDDLE_RIGHT);
+                horizontal5.setWidth("270px");
+                horizontal5.setComponentAlignment(horizontal, Alignment.MIDDLE_RIGHT);
+
 
                 //horizontal.setComponentAlignment(counterPanel,Alignment.BOTTOM_RIGHT);
                 //horizontal.setComponentAlignment(image8,Alignment.BOTTOM_LEFT);
 
+            } else {
+                horizontal.removeAllComponents();
             }
             if (!tekstPole3.isEmpty()) {
 
 
-                byte[][] ek33 = AES.encrypt(String.valueOf(j+2).getBytes(), key.getBytes());
+                byte[][] ek33 = AES.encrypt(String.valueOf(j + 2).getBytes(), key.getBytes());
                 for (int m = 0; m < 16; m++) {
                     ive[m] = ek33[4][m + 144];
                 }
                 for (byte b : ive) {
                     sb7.append(String.format("%02X ", b));
                     ekPole3.setValue(sb7.toString());
-                }tekstHexPole3.setValue(toHex(tekstPole3.getValue()));
-                counter2.setValue(String.valueOf(j+2));
+                }
+                tekstHexPole3.setValue(toHex(tekstPole3.getValue()));
+                counter2.setValue(String.valueOf(j + 2));
                 counter2.addStyleName("Wyniki");
                /* horizontal.setWidth("560px");
                 horizontal.removeComponent(image8);
                 horizontal.addComponent(image9);
                 horizontal.setComponentAlignment(image9,Alignment.TOP_RIGHT);*/
-                horizontal3.addComponent(counterPanel2);
+                horizontal3.addComponent(counter2);
+                horizontal3.setComponentAlignment(counter2, Alignment.MIDDLE_RIGHT);
                 horizontal3.addComponent(image9);
+                horizontal3.setComponentAlignment(image9, Alignment.MIDDLE_CENTER);
                 horizontal6.addComponent(horizontal3);
-                horizontal6.setWidth("220px");
-                horizontal6.setComponentAlignment(horizontal3,Alignment.MIDDLE_RIGHT);
+                horizontal6.setWidth("200px");
+                horizontal6.setComponentAlignment(horizontal3, Alignment.MIDDLE_RIGHT);
 
+            } else {
+                horizontal3.removeAllComponents();
             }
             if (!tekstPole4.isEmpty()) {
 
 
-
-                byte[][] ek44 = AES.encrypt(String.valueOf(j+3).getBytes(), key.getBytes());
+                byte[][] ek44 = AES.encrypt(String.valueOf(j + 3).getBytes(), key.getBytes());
                 for (int m = 0; m < 16; m++) {
                     ive[m] = ek44[4][m + 144];
                 }
                 for (byte b : ive) {
                     sb8.append(String.format("%02X ", b));
-                    counter3.setValue(String.valueOf(j+3));
+                    counter3.setValue(String.valueOf(j + 3));
                     counter3.addStyleName("Wyniki");
                     ekPole4.setValue(sb8.toString());
                     tekstHexPole4.setValue(toHex(tekstPole4.getValue()));
-                    horizontal4.addComponent(counterPanel3);
+                    horizontal4.addComponent(counter3);
+                    horizontal4.setComponentAlignment(counter3, Alignment.MIDDLE_RIGHT);
                     horizontal4.addComponent(image10);
                     horizontal7.addComponent(horizontal4);
-                    horizontal7.setWidth("220px");
-                    horizontal7.setComponentAlignment(horizontal4,Alignment.MIDDLE_RIGHT);
+                    horizontal7.setWidth("200px");
+                    horizontal7.setComponentAlignment(horizontal4, Alignment.MIDDLE_RIGHT);
 
                 }
+            } else {
+                horizontal4.removeAllComponents();
             }
 
 
@@ -300,7 +372,6 @@ public class CTR_GUI extends HorizontalLayout implements View {
             tekstHexPanel.setWidth("78px");
             tekstHexPanel.setHeight("78px");
             tekstHexPanel.setContent(tekstHexPole);
-
 
 
             ekPanel2.setWidth("78px");
@@ -330,19 +401,22 @@ public class CTR_GUI extends HorizontalLayout implements View {
             tekstHexPanel4.setHeight("78px");
             tekstHexPanel4.setContent(tekstHexPole4);
 
-            counterPanel.setContent(counter);
-            counterPanel.setSizeUndefined();
-            counterPanel2.setContent(counter2);
-            counterPanel2.setSizeUndefined();
-            counterPanel3.setContent(counter3);
 
-            horizontal8.addComponents(horizontal5,horizontal6,horizontal7);
+            horizontal8.addComponents(horizontal5, horizontal6, horizontal7);
             horizontal8.setSizeUndefined();
-            horizontal8.setComponentAlignment(horizontal5,Alignment.MIDDLE_RIGHT);
-            horizontal8.setComponentAlignment(horizontal6,Alignment.MIDDLE_RIGHT);
-            horizontal8.setComponentAlignment(horizontal7,Alignment.MIDDLE_RIGHT);
+            horizontal8.setComponentAlignment(horizontal5, Alignment.MIDDLE_RIGHT);
+            horizontal8.setComponentAlignment(horizontal6, Alignment.MIDDLE_RIGHT);
+            horizontal8.setComponentAlignment(horizontal7, Alignment.MIDDLE_RIGHT);
 
-            if(!tekstPole.isEmpty()) {
+
+            if (!tekstPole.isEmpty()) {
+
+                vertical.addComponents(counter4, image11, ekPanel);
+
+                vertical.setComponentAlignment(counter4, Alignment.BOTTOM_CENTER);
+                vertical.setComponentAlignment(image11, Alignment.TOP_RIGHT);
+                vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
+
 
                 vertical2.addComponents(tekstHexPanel, image, wynikPanel);
                 vertical2.setWidth("100%");
@@ -350,10 +424,15 @@ public class CTR_GUI extends HorizontalLayout implements View {
 
                 vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
                 vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
+
+            } else {
+                vertical.removeAllComponents();
+                vertical2.removeAllComponents();
+                vertical2.addComponent(tekstPole);
             }
-            if(!tekstPole2.isEmpty()) {
+            if (!tekstPole2.isEmpty()) {
                 vertical3.addComponents(ekPanel2, image5);
-                vertical3.setSizeUndefined();
+                vertical3.setComponentAlignment(image5, Alignment.TOP_CENTER);
                 vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
 
 
@@ -361,33 +440,44 @@ public class CTR_GUI extends HorizontalLayout implements View {
                 vertical4.setWidth("100%");
                 vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
                 vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
+            } else {
+                vertical3.removeAllComponents();
+                vertical4.removeAllComponents();
+                vertical4.addComponent(tekstPole2);
             }
-            if(!tekstPole3.isEmpty()) {
+            if (!tekstPole3.isEmpty()) {
                 vertical5.addComponents(ekPanel3, image6);
-                vertical5.setSizeUndefined();
-                vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_LEFT);
+                vertical5.setWidth("78px");
+                vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_RIGHT);
 
 
                 vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
                 vertical6.setWidth("100%");
                 vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
                 vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
+            } else {
+                vertical5.removeAllComponents();
+                vertical6.removeAllComponents();
+                vertical6.addComponent(tekstPole3);
             }
-            if(!tekstPole4.isEmpty()) {
+            if (!tekstPole4.isEmpty()) {
                 vertical7.addComponents(ekPanel4, image7);
-                vertical7.setSizeUndefined();
-                vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_LEFT);
+                vertical7.setWidth("78px");
+                vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_RIGHT);
 
 
                 vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
                 vertical8.setWidth("100%");
                 vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
                 vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
+            } else {
+                vertical7.removeAllComponents();
+                vertical8.removeAllComponents();
+                vertical8.addComponent(tekstPole4);
             }
 
-        }
-    }
 
+    }
 
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -421,5 +511,11 @@ public class CTR_GUI extends HorizontalLayout implements View {
         }
         return out;
 
+    }
+
+    private int getMin(int num1, int num2) {
+        if (num1 <= num2)
+            return num1;
+        else return num2;
     }
 }

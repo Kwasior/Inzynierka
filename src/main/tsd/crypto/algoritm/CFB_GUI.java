@@ -132,62 +132,61 @@ public class CFB_GUI extends HorizontalLayout implements View {
                         vertical7.setWidth("105px");
                         if (kluczPole.getValue().length() == 16 || kluczPole.getValue().length() == 24 || kluczPole.getValue().length() == 32) {
 
-                                String[] calytekstArray = calytekstPole.getValue().split("");
-                                for (int i = 0; i < calytekstArray.length; i++) {
-                                    if (i < 17) {
-                                        String pole1;
-                                        pole1 = calytekstPole.getValue().substring(0, getMin(calytekstPole.getValue().length(), 16));
-                                        tekstPole.setValue(pole1);
+                            String[] calytekstArray = calytekstPole.getValue().split("");
+                            for (int i = 0; i < calytekstArray.length; i++) {
+                                if (i < 17) {
+                                    String pole1;
+                                    pole1 = calytekstPole.getValue().substring(0, getMin(calytekstPole.getValue().length(), 16));
+                                    tekstPole.setValue(pole1);
 
-                                    }
-                                    if (i < 33 && i >= 16) {
-                                        String pole1;
-                                        pole1 = calytekstPole.getValue().substring(16, getMin(calytekstPole.getValue().length(), 32));
-                                        tekstPole2.setValue(pole1);
-
-                                    }
-                                    if (i < 49 && i >= 32) {
-                                        String pole1;
-                                        pole1 = calytekstPole.getValue().substring(32, getMin(calytekstPole.getValue().length(), 48));
-                                        tekstPole3.setValue(pole1);
-
-                                    }
-                                    if (i < 65 && i >= 48) {
-
-                                        String pole1;
-                                        pole1 = calytekstPole.getValue().substring(48, getMin(calytekstPole.getValue().length(), 64));
-                                        tekstPole4.setValue(pole1);
-
-
-                                    }
                                 }
-                                if (calytekstPole.getValue().length() == 0) {
-                                    tekstPole.setValue("");
-                                    tekstPole2.setValue("");
-                                    tekstPole3.setValue("");
-                                    tekstPole4.setValue("");
-                                } else if (calytekstPole.getValue().length() <= 16) {
-                                    tekstPole2.setValue("");
-                                    tekstPole3.setValue("");
-                                    tekstPole4.setValue("");
-                                } else if (calytekstPole.getValue().length() <= 32) {
+                                if (i < 33 && i >= 16) {
+                                    String pole1;
+                                    pole1 = calytekstPole.getValue().substring(16, getMin(calytekstPole.getValue().length(), 32));
+                                    tekstPole2.setValue(pole1);
 
-                                    tekstPole3.setValue("");
-                                    tekstPole4.setValue("");
-                                } else if (calytekstPole.getValue().length() <= 48) {
-
-                                    tekstPole4.setValue("");
                                 }
-                                display();
+                                if (i < 49 && i >= 32) {
+                                    String pole1;
+                                    pole1 = calytekstPole.getValue().substring(32, getMin(calytekstPole.getValue().length(), 48));
+                                    tekstPole3.setValue(pole1);
+
+                                }
+                                if (i < 65 && i >= 48) {
+
+                                    String pole1;
+                                    pole1 = calytekstPole.getValue().substring(48, getMin(calytekstPole.getValue().length(), 64));
+                                    tekstPole4.setValue(pole1);
 
 
+                                }
+                            }
+                            if (calytekstPole.getValue().length() == 0) {
+                                tekstPole.setValue("");
+                                tekstPole2.setValue("");
+                                tekstPole3.setValue("");
+                                tekstPole4.setValue("");
+                            } else if (calytekstPole.getValue().length() <= 16) {
+                                tekstPole2.setValue("");
+                                tekstPole3.setValue("");
+                                tekstPole4.setValue("");
+                            } else if (calytekstPole.getValue().length() <= 32) {
 
-                        }else kluczPole.setValue("Zła długość klucza");
+                                tekstPole3.setValue("");
+                                tekstPole4.setValue("");
+                            } else if (calytekstPole.getValue().length() <= 48) {
+
+                                tekstPole4.setValue("");
+                            }
+                            display();
+
+
+                        } else kluczPole.setValue("Zła długość klucza");
                     }
                 });
 
         vertical.setHeight("330px");
-        vertical11.addComponents(vertical9, calytekstPole , b);
+        vertical11.addComponents(vertical9, calytekstPole, b);
 
         //vertical.setComponentAlignment(vertical9,Alignment.TOP_LEFT);
         //vertical.setComponentAlignment(b,Alignment.TOP_LEFT);
@@ -385,68 +384,68 @@ public class CFB_GUI extends HorizontalLayout implements View {
             vertical8.addComponents(tekstPole4);
         }
 
-            if (!tekstPole.isEmpty()) {
+        if (!tekstPole.isEmpty()) {
 
-                horizontal.addComponents(ivHexPanel, image10);
+            horizontal.addComponents(ivHexPanel, image10);
 
-                horizontal.setComponentAlignment(ivHexPanel, Alignment.BOTTOM_RIGHT);
-                horizontal.setComponentAlignment(image10, Alignment.BOTTOM_RIGHT);
+            horizontal.setComponentAlignment(ivHexPanel, Alignment.BOTTOM_RIGHT);
+            horizontal.setComponentAlignment(image10, Alignment.BOTTOM_RIGHT);
 
-                vertical.addComponents(ekPanel, horizontal);
+            vertical.addComponents(ekPanel, horizontal);
 
-                vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
-                vertical.setComponentAlignment(horizontal, Alignment.TOP_RIGHT);
+            vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
+            vertical.setComponentAlignment(horizontal, Alignment.TOP_RIGHT);
 
-                vertical.setHeight("430px");
-                vertical2.addComponents(tekstHexPanel, image, wynikPanel);
-                vertical2.setWidth("100%");
-
-
-                vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
-                vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
-            } else {
-                horizontal.removeAllComponents();
-                vertical.removeAllComponents();
-                vertical2.removeAllComponents();
-
-                vertical2.addComponents(tekstPole);
-
-            }
-            if (!tekstPole2.isEmpty()) {
-                vertical3.addComponents(ekPanel2, image5);
-                vertical3.setHeight("430px");
-                vertical3.setComponentAlignment(ekPanel2, Alignment.BOTTOM_RIGHT);
-                vertical3.setComponentAlignment(image5, Alignment.TOP_RIGHT);
+            vertical.setHeight("430px");
+            vertical2.addComponents(tekstHexPanel, image, wynikPanel);
+            vertical2.setWidth("100%");
 
 
-                vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
-                vertical4.setWidth("100%");
-                vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
-                vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
-            }
-            if (!tekstPole3.isEmpty()) {
-                vertical5.addComponents(ekPanel3, image6);
-                vertical5.setHeight("430px");
-                vertical5.setComponentAlignment(ekPanel3, Alignment.BOTTOM_RIGHT);
-                vertical5.setComponentAlignment(image6, Alignment.TOP_RIGHT);
+            vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
+            vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
+        } else {
+            horizontal.removeAllComponents();
+            vertical.removeAllComponents();
+            vertical2.removeAllComponents();
 
-                vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
-                vertical6.setWidth("100%");
-                vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
-                vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
-            }
-            if (!tekstPole4.isEmpty()) {
-                vertical7.addComponents(ekPanel4, image7);
-                vertical7.setHeight("430px");
-                vertical7.setComponentAlignment(ekPanel4, Alignment.BOTTOM_RIGHT);
-                vertical7.setComponentAlignment(image7, Alignment.TOP_RIGHT);
+            vertical2.addComponents(tekstPole);
+
+        }
+        if (!tekstPole2.isEmpty()) {
+            vertical3.addComponents(ekPanel2, image5);
+            vertical3.setHeight("430px");
+            vertical3.setComponentAlignment(ekPanel2, Alignment.BOTTOM_RIGHT);
+            vertical3.setComponentAlignment(image5, Alignment.TOP_RIGHT);
 
 
-                vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
-                vertical8.setWidth("100%");
-                vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
-                vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
-            }
+            vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
+            vertical4.setWidth("100%");
+            vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
+            vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
+        }
+        if (!tekstPole3.isEmpty()) {
+            vertical5.addComponents(ekPanel3, image6);
+            vertical5.setHeight("430px");
+            vertical5.setComponentAlignment(ekPanel3, Alignment.BOTTOM_RIGHT);
+            vertical5.setComponentAlignment(image6, Alignment.TOP_RIGHT);
+
+            vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
+            vertical6.setWidth("100%");
+            vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
+            vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
+        }
+        if (!tekstPole4.isEmpty()) {
+            vertical7.addComponents(ekPanel4, image7);
+            vertical7.setHeight("430px");
+            vertical7.setComponentAlignment(ekPanel4, Alignment.BOTTOM_RIGHT);
+            vertical7.setComponentAlignment(image7, Alignment.TOP_RIGHT);
+
+
+            vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
+            vertical8.setWidth("100%");
+            vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
+            vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
+        }
 
 
     }
@@ -476,9 +475,10 @@ public class CFB_GUI extends HorizontalLayout implements View {
         String withDashes = sb.toString();
         return withDashes;
     }
-                    private int getMin(int num1, int num2) {
-                        if (num1 <= num2)
-                            return num1;
-                        else return num2;
-                    }
+
+    private int getMin(int num1, int num2) {
+        if (num1 <= num2)
+            return num1;
+        else return num2;
+    }
 }

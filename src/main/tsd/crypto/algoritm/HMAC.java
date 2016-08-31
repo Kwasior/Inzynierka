@@ -13,8 +13,8 @@ public class HMAC {
     public static final byte oneOpad = 0x5c;
     public static final byte oneIpad = 0x36;
     public static byte[] resultTmp = new byte[20];
-    public static byte[] i_pad = new byte [64];
-    public static byte[] o_pad = new byte [64];
+    public static byte[] i_pad = new byte[64];
+    public static byte[] o_pad = new byte[64];
 
 
     private static byte[] xor_func(byte[] a, byte[] b) throws Exception {
@@ -58,7 +58,7 @@ public class HMAC {
         for (int i = key.length; i < 64; i++) {
             o_key_pad[i] = oneOpad;
         }
-        for (int i = 0; i < 64 ; i++){
+        for (int i = 0; i < 64; i++) {
             i_pad[i] = oneIpad;
             o_pad[i] = oneOpad;
         }
@@ -71,7 +71,6 @@ public class HMAC {
         result = hash(tmp2);
         return result;
     }
-
 
 
 }

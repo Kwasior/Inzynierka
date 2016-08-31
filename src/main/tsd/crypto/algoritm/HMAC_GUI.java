@@ -51,9 +51,9 @@ public class HMAC_GUI extends HorizontalLayout implements View
     HorizontalLayout horizontal = new HorizontalLayout();
     HorizontalLayout horizontal2 = new HorizontalLayout();
     HorizontalLayout horizontal3 = new HorizontalLayout();
-    Image image = new Image("",resource);
-    Image image2 = new Image("",resource2);
-    Image image3 = new Image("",resource3);
+    Image image = new Image("", resource);
+    Image image2 = new Image("", resource2);
+    Image image3 = new Image("", resource3);
     int step = 1;
 
 
@@ -71,7 +71,6 @@ public class HMAC_GUI extends HorizontalLayout implements View
         keyHex.addStyleName("Hmac");
 
         keyPanel.setContent(keyHex);
-
 
 
         i_padPanel.setContent(i_pad);
@@ -168,7 +167,7 @@ public class HMAC_GUI extends HorizontalLayout implements View
 
                 public void buttonClick(Button.ClickEvent event) {
                     step++;
-                    if(step > 4)
+                    if (step > 4)
                         step = 4;
                     display(step);
                 }
@@ -180,7 +179,7 @@ public class HMAC_GUI extends HorizontalLayout implements View
 
                 public void buttonClick(Button.ClickEvent event) {
                     step--;
-                    if(step < 1 )
+                    if (step < 1)
                         step = 1;
                     display(step);
                 }
@@ -198,28 +197,28 @@ public class HMAC_GUI extends HorizontalLayout implements View
         if (step == 1) {
             horizontal.removeAllComponents();
             horizontal.addComponents(keyPanel, image, i_padPanel, image2, i_key_padPanel);
-            horizontal.setComponentAlignment(image,Alignment.MIDDLE_CENTER);
-            horizontal.setComponentAlignment(image2,Alignment.MIDDLE_CENTER);
+            horizontal.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+            horizontal.setComponentAlignment(image2, Alignment.MIDDLE_CENTER);
         }
 
         if (step == 2) {
             horizontal.removeAllComponents();
             horizontal.addComponents(keyPanel, image, o_padPanel, image2, o_key_padPanel);
-            horizontal.setComponentAlignment(image,Alignment.MIDDLE_CENTER);
-            horizontal.setComponentAlignment(image2,Alignment.MIDDLE_CENTER);
+            horizontal.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+            horizontal.setComponentAlignment(image2, Alignment.MIDDLE_CENTER);
         }
 
         if (step == 3) {
             horizontal.removeAllComponents();
             horizontal.removeAllComponents();
-            horizontal.addComponents(i_key_padPanel, messagePanel,image3,hash1Panel1);
+            horizontal.addComponents(i_key_padPanel, messagePanel, image3, hash1Panel1);
 
         }
 
         if (step == 4) {
             horizontal.removeAllComponents();
             horizontal.removeAllComponents();
-            horizontal.addComponents(o_key_padPanel,hash1Panel1,image3,hash2Panel);
+            horizontal.addComponents(o_key_padPanel, hash1Panel1, image3, hash2Panel);
 
         }
     }

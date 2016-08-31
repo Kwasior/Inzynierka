@@ -61,7 +61,7 @@ public class StartView extends VerticalLayout implements View {
 
                     }
                 });
-        addComponents(button,button2,button3,button4,button5,button6);
+        addComponents(button, button2, button3, button4, button5, button6);
         setComponentAlignment(button, Alignment.MIDDLE_CENTER);
         setComponentAlignment(button2, Alignment.MIDDLE_CENTER);
         setComponentAlignment(button3, Alignment.MIDDLE_CENTER);

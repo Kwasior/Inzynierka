@@ -184,8 +184,7 @@ public class OFB_GUI extends HorizontalLayout implements View {
                             display();
 
 
-
-                        }else kluczPole.setValue("Zła długość klucza");
+                        } else kluczPole.setValue("Zła długość klucza");
                     }
                 });
         vertical11.addComponents(vertical9, calytekstPole, b);
@@ -196,7 +195,7 @@ public class OFB_GUI extends HorizontalLayout implements View {
         vertical12.setComponentAlignment(horizontal3, Alignment.BOTTOM_RIGHT);
         vertical12.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
         vertical.addComponent(vertical12);
-        vertical.setComponentAlignment(vertical12,Alignment.BOTTOM_RIGHT);
+        vertical.setComponentAlignment(vertical12, Alignment.BOTTOM_RIGHT);
 
         vertical2.addComponents(tekstPole);
         vertical4.addComponents(tekstPole2);
@@ -391,82 +390,77 @@ public class OFB_GUI extends HorizontalLayout implements View {
             vertical6.addComponents(tekstPole3);
             vertical8.addComponents(tekstPole4);
         }
-            if (!tekstPole.isEmpty()) {
-                horizontal3.addComponents(ivHexPanel, image11);
+        if (!tekstPole.isEmpty()) {
+            horizontal3.addComponents(ivHexPanel, image11);
 
-                horizontal3.setComponentAlignment(ivHexPanel, Alignment.BOTTOM_RIGHT);
-                horizontal3.setComponentAlignment(image11, Alignment.BOTTOM_RIGHT);
-                vertical2.addComponents(tekstHexPanel, image, wynikPanel);
-                vertical2.setWidth("100%");
-
-
-                vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
-                vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
-            }
-            else {
-
-                vertical.removeAllComponents();
-                vertical2.removeAllComponents();
-                horizontal.removeAllComponents();
-                vertical2.addComponents(tekstPole);
-
-            }
+            horizontal3.setComponentAlignment(ivHexPanel, Alignment.BOTTOM_RIGHT);
+            horizontal3.setComponentAlignment(image11, Alignment.BOTTOM_RIGHT);
+            vertical2.addComponents(tekstHexPanel, image, wynikPanel);
+            vertical2.setWidth("100%");
 
 
-            if (!tekstPole2.isEmpty()) {
-                vertical3.addComponents(ekPanel2, image5);
-                vertical3.setSizeUndefined();
-                vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
-                vertical3.setWidth("95px");
+            vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
+            vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
+        } else {
 
-                vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
-                vertical4.setWidth("100%");
-                vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
-                vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
-                horizontal.removeAllComponents();
-                horizontal.setWidth("365px");
-                horizontal.addComponent(image8);
-                horizontal.setComponentAlignment(image8, Alignment.TOP_RIGHT);
-            }else horizontal.removeAllComponents();
+            vertical.removeAllComponents();
+            vertical2.removeAllComponents();
+            horizontal.removeAllComponents();
+            vertical2.addComponents(tekstPole);
 
-            if (!tekstPole3.isEmpty()) {
-                vertical5.addComponents(ekPanel3, image6);
-                vertical5.setSizeUndefined();
-                vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_LEFT);
-                vertical3.setWidth("95px");
+        }
 
-                vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
-                vertical6.setWidth("100%");
-                vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
-                vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
 
-                horizontal.setWidth("580px");
-                horizontal.removeComponent(image8);
-                horizontal.addComponent(image9);
-                horizontal.setComponentAlignment(image9, Alignment.TOP_RIGHT);
-            }
-            if (!tekstPole4.isEmpty()) {
-                vertical7.addComponents(ekPanel4, image7);
-                vertical7.setSizeUndefined();
-                vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_LEFT);
-                vertical7.setWidth("95px");
+        if (!tekstPole2.isEmpty()) {
+            vertical3.addComponents(ekPanel2, image5);
+            vertical3.setSizeUndefined();
+            vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
+            vertical3.setWidth("95px");
 
-                vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
-                vertical8.setWidth("100%");
-                vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
-                vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
-                horizontal.setWidth("805px");
-                horizontal.removeComponent(image9);
-                horizontal.addComponent(image10);
-                horizontal.setComponentAlignment(image10, Alignment.TOP_RIGHT);
-            }
+            vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
+            vertical4.setWidth("100%");
+            vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
+            vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
+            horizontal.removeAllComponents();
+            horizontal.setWidth("365px");
+            horizontal.addComponent(image8);
+            horizontal.setComponentAlignment(image8, Alignment.TOP_RIGHT);
+        } else horizontal.removeAllComponents();
 
+        if (!tekstPole3.isEmpty()) {
+            vertical5.addComponents(ekPanel3, image6);
+            vertical5.setSizeUndefined();
+            vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_RIGHT);
+            vertical3.setWidth("95px");
+
+            vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
+            vertical6.setWidth("100%");
+            vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
+            vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
+
+            horizontal.setWidth("580px");
+            horizontal.removeComponent(image8);
+            horizontal.addComponent(image9);
+            horizontal.setComponentAlignment(image9, Alignment.TOP_RIGHT);
+        }
+        if (!tekstPole4.isEmpty()) {
+            vertical7.addComponents(ekPanel4, image7);
+            vertical7.setSizeUndefined();
+            vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_RIGHT);
+            vertical7.setWidth("95px");
+
+            vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
+            vertical8.setWidth("100%");
+            vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
+            vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
+            horizontal.setWidth("805px");
+            horizontal.removeComponent(image9);
+            horizontal.addComponent(image10);
+            horizontal.setComponentAlignment(image10, Alignment.TOP_RIGHT);
+        }
 
 
     }
-
-
-
 
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -481,10 +475,12 @@ public class OFB_GUI extends HorizontalLayout implements View {
         return out;
 
     }
+
     public String toHex(String arg) {
 
         return spacing(String.format("%02X ", new BigInteger(1, arg.getBytes())));
     }
+
     private String spacing(String in) {
 
         int interval = 2;
@@ -499,6 +495,7 @@ public class OFB_GUI extends HorizontalLayout implements View {
         String withDashes = sb.toString();
         return withDashes;
     }
+
     private int getMin(int num1, int num2) {
         if (num1 <= num2)
             return num1;

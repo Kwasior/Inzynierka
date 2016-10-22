@@ -13,9 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
 // kryptografia stosowana Menezes 
-// kryptografia teoria i praktyka zabezpieczenia systemow komputerowych - Kuty�owski
+// kryptografia teoria i praktyka zabezpieczenia systemow komputerowych - Kutyłowski
 // bez ograniczen długosc DONE
-// TODO wygląd
+// TODO wyglad DONE :) ;
 // deterministyczne uzupelnienie CHYBA DONE
 // musimy wiedziec gdzie zayczna sie wypelnienie DONE
 // jak równo to wypelnienie DONE

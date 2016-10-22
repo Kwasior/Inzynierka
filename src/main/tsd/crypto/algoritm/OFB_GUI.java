@@ -110,7 +110,9 @@ public class OFB_GUI extends HorizontalLayout implements View {
         calytekstPole.setWordwrap(true);
         calytekstPole.setMaxLength(64);
         ivPole.setValue("Wektor");
+        ivPole.setMaxLength(16);
         kluczPole.setValue("Klucz");
+        kluczPole.setMaxLength(16);
         calytekstPole.setValue("Tekst do zaszyfrowania");
         tekstPole.setMaxLength(16);
         tekstPole2.setMaxLength(16);
@@ -187,7 +189,77 @@ public class OFB_GUI extends HorizontalLayout implements View {
                         } else kluczPole.setValue("Zła długość klucza");
                     }
                 });
-        vertical11.addComponents(vertical9, calytekstPole, b);
+
+        Button bAES = new Button("AES",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("OFB");
+                        getUI().getNavigator().addView("OFB", new OFB_GUI());
+                        getUI().getNavigator().navigateTo("AES");
+
+                    }
+                });
+
+        Button bCBC = new Button("CBC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("OFB");
+                        getUI().getNavigator().addView("OFB", new OFB_GUI());
+                        getUI().getNavigator().navigateTo("CBC");
+
+                    }
+                });
+
+        Button bCFB = new Button("CFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("OFB");
+                        getUI().getNavigator().addView("OFB", new OFB_GUI());
+                        getUI().getNavigator().navigateTo("CFB");
+
+                    }
+                });
+
+        Button bCTR = new Button("CTR",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("OFB");
+                        getUI().getNavigator().addView("OFB", new OFB_GUI());
+                        getUI().getNavigator().navigateTo("CTR");
+
+                    }
+                });
+
+        Button bHMAC = new Button("HMAC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("OFB");
+                        getUI().getNavigator().addView("OFB", new OFB_GUI());
+                        getUI().getNavigator().navigateTo("HMAC");
+
+                    }
+                });
+        vertical11.addComponents(vertical9, calytekstPole, b, bAES, bCBC, bCFB, bCTR, bHMAC);
         vertical.setHeight("330px");
         vertical12.addComponents(ekPanel, horizontal3);
 
@@ -202,7 +274,7 @@ public class OFB_GUI extends HorizontalLayout implements View {
         vertical6.addComponents(tekstPole3);
         vertical8.addComponents(tekstPole4);
 
-        horizontal2.addComponents(vertical, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8, vertical11);
+        horizontal2.addComponents( vertical11, vertical, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8);
         horizontal2.setComponentAlignment(vertical3, Alignment.BOTTOM_LEFT);
         horizontal2.setComponentAlignment(vertical5, Alignment.BOTTOM_LEFT);
         horizontal2.setComponentAlignment(vertical7, Alignment.BOTTOM_LEFT);

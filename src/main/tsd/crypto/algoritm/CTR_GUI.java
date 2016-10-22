@@ -1,16 +1,14 @@
 package main.tsd.crypto.algoritm;
 
-import com.google.appengine.repackaged.com.google.common.base.Flag;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.File;
 import java.math.BigInteger;
-
-import org.apache.commons.lang3.math.NumberUtils;
 
 public class CTR_GUI extends HorizontalLayout implements View {
 
@@ -19,10 +17,10 @@ public class CTR_GUI extends HorizontalLayout implements View {
     private final TextField tekstPole3 = new TextField();
     private final TextField tekstPole4 = new TextField();
 
-    TextArea calytekstPole = new TextArea("Tekst do zaszyfrowania");
+    TextArea calytekstPole = new TextArea();
 
-    private final TextField kluczPole = new TextField("Klucz");
-    private final TextField ivPole = new TextField("Licznik");
+    private final TextField kluczPole = new TextField();
+    private final TextField ivPole = new TextField();
 
     private final Label wynikPole = new Label();
     private final Label wynikPole2 = new Label();
@@ -117,7 +115,6 @@ public class CTR_GUI extends HorizontalLayout implements View {
         tekstPole4.setWidth("120px");
 
 
-
         vertical3.setWidth("78px");
         vertical5.setWidth("78px");
         vertical7.setWidth("78px");
@@ -125,6 +122,13 @@ public class CTR_GUI extends HorizontalLayout implements View {
         calytekstPole.setWidth("120px");
         calytekstPole.setWordwrap(true);
         calytekstPole.setMaxLength(64);
+        calytekstPole.setValue("Tekst do zaszyfrowania");
+
+        kluczPole.setValue("Klucz");
+        kluczPole.setMaxLength(16);
+
+        ivPole.setValue("Wektor");
+        ivPole.setMaxLength(5);
 
 
         setSpacing(true);
@@ -182,8 +186,72 @@ public class CTR_GUI extends HorizontalLayout implements View {
 
                 });
 
-        vertical9.addComponents(kluczPole, ivPole, calytekstPole, b);
+        Button bAES = new Button("AES",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
 
+
+                        getUI().getNavigator().removeView("CTR");
+                        getUI().getNavigator().addView("CTR", new CTR_GUI());
+                        getUI().getNavigator().navigateTo("AES");
+
+                    }
+                });
+
+        Button bCBC = new Button("CBC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+                        getUI().getNavigator().removeView("CTR");
+                        getUI().getNavigator().addView("CTR", new CTR_GUI());
+                        getUI().getNavigator().navigateTo("CBC");
+
+                    }
+                });
+
+        Button bCFB = new Button("CFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+                        getUI().getNavigator().removeView("CTR");
+                        getUI().getNavigator().addView("CTR", new CTR_GUI());
+                        getUI().getNavigator().navigateTo("CFB");
+
+                    }
+                });
+
+        Button bOFB = new Button("OFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+                        getUI().getNavigator().removeView("CTR");
+                        getUI().getNavigator().addView("CTR", new CTR_GUI());
+                        getUI().getNavigator().navigateTo("OFB");
+
+                    }
+                });
+
+        Button bHMAC = new Button("HMAC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+                        getUI().getNavigator().removeView("CTR");
+                        getUI().getNavigator().addView("CTR", new CTR_GUI());
+                        getUI().getNavigator().navigateTo("HMAC");
+
+                    }
+                });
+
+        vertical9.addComponents(kluczPole, ivPole, calytekstPole, b, bAES, bCBC, bCFB, bOFB, bHMAC);
 
 
         vertical2.addComponents(tekstPole);
@@ -191,7 +259,7 @@ public class CTR_GUI extends HorizontalLayout implements View {
         vertical6.addComponents(tekstPole3);
         vertical8.addComponents(tekstPole4);
 
-        horizontal2.addComponents(vertical, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8, vertical9);
+        horizontal2.addComponents(vertical9, vertical, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8);
         horizontal2.setComponentAlignment(vertical3, Alignment.BOTTOM_LEFT);
         horizontal2.setComponentAlignment(vertical5, Alignment.BOTTOM_LEFT);
         horizontal2.setComponentAlignment(vertical7, Alignment.BOTTOM_LEFT);
@@ -278,203 +346,203 @@ public class CTR_GUI extends HorizontalLayout implements View {
             tekstHexPole.setValue(toHex(tekstPole.getValue()));
         }
 
-            if (!tekstPole2.isEmpty()) {
+        if (!tekstPole2.isEmpty()) {
 
 
-                byte[][] ek22 = AES.encrypt(String.valueOf(j + 1).getBytes(), key.getBytes());
-                for (int m = 0; m < 16; m++) {
-                    ive[m] = ek22[4][m + 144];
-                }
-                for (byte b : ive) {
-                    sb6.append(String.format("%02X ", b));
-                    ekPole2.setValue(sb6.toString());
-                }
-                tekstHexPole2.setValue(toHex(tekstPole2.getValue()));
-                counter.setValue(String.valueOf(j + 1));
-                counter.addStyleName("Wyniki");
+            byte[][] ek22 = AES.encrypt(String.valueOf(j + 1).getBytes(), key.getBytes());
+            for (int m = 0; m < 16; m++) {
+                ive[m] = ek22[4][m + 144];
+            }
+            for (byte b : ive) {
+                sb6.append(String.format("%02X ", b));
+                ekPole2.setValue(sb6.toString());
+            }
+            tekstHexPole2.setValue(toHex(tekstPole2.getValue()));
+            counter.setValue(String.valueOf(j + 1));
+            counter.addStyleName("Wyniki");
                 /*horizontal.setWidth("335px");
                 horizontal.addComponent(image8);
                 horizontal.setComponentAlignment(image8,Alignment.TOP_RIGHT);*/
-                horizontal.addComponents(counter, image8);
-                horizontal.setComponentAlignment(counter, Alignment.MIDDLE_RIGHT);
-                horizontal.setComponentAlignment(image8, Alignment.MIDDLE_CENTER);
-                //horizontal.setComponentAlignment(counter, Alignment.MIDDLE_CENTER);
-                horizontal5.addComponent(horizontal);
-                horizontal5.setWidth("270px");
-                horizontal5.setComponentAlignment(horizontal, Alignment.MIDDLE_RIGHT);
+            horizontal.addComponents(counter, image8);
+            horizontal.setComponentAlignment(counter, Alignment.MIDDLE_RIGHT);
+            horizontal.setComponentAlignment(image8, Alignment.MIDDLE_CENTER);
+            //horizontal.setComponentAlignment(counter, Alignment.MIDDLE_CENTER);
+            horizontal5.addComponent(horizontal);
+            horizontal5.setWidth("270px");
+            horizontal5.setComponentAlignment(horizontal, Alignment.MIDDLE_RIGHT);
 
 
-                //horizontal.setComponentAlignment(counterPanel,Alignment.BOTTOM_RIGHT);
-                //horizontal.setComponentAlignment(image8,Alignment.BOTTOM_LEFT);
+            //horizontal.setComponentAlignment(counterPanel,Alignment.BOTTOM_RIGHT);
+            //horizontal.setComponentAlignment(image8,Alignment.BOTTOM_LEFT);
 
-            } else {
-                horizontal.removeAllComponents();
+        } else {
+            horizontal.removeAllComponents();
+        }
+        if (!tekstPole3.isEmpty()) {
+
+
+            byte[][] ek33 = AES.encrypt(String.valueOf(j + 2).getBytes(), key.getBytes());
+            for (int m = 0; m < 16; m++) {
+                ive[m] = ek33[4][m + 144];
             }
-            if (!tekstPole3.isEmpty()) {
-
-
-                byte[][] ek33 = AES.encrypt(String.valueOf(j + 2).getBytes(), key.getBytes());
-                for (int m = 0; m < 16; m++) {
-                    ive[m] = ek33[4][m + 144];
-                }
-                for (byte b : ive) {
-                    sb7.append(String.format("%02X ", b));
-                    ekPole3.setValue(sb7.toString());
-                }
-                tekstHexPole3.setValue(toHex(tekstPole3.getValue()));
-                counter2.setValue(String.valueOf(j + 2));
-                counter2.addStyleName("Wyniki");
+            for (byte b : ive) {
+                sb7.append(String.format("%02X ", b));
+                ekPole3.setValue(sb7.toString());
+            }
+            tekstHexPole3.setValue(toHex(tekstPole3.getValue()));
+            counter2.setValue(String.valueOf(j + 2));
+            counter2.addStyleName("Wyniki");
                /* horizontal.setWidth("560px");
                 horizontal.removeComponent(image8);
                 horizontal.addComponent(image9);
                 horizontal.setComponentAlignment(image9,Alignment.TOP_RIGHT);*/
-                horizontal3.addComponent(counter2);
-                horizontal3.setComponentAlignment(counter2, Alignment.MIDDLE_RIGHT);
-                horizontal3.addComponent(image9);
-                horizontal3.setComponentAlignment(image9, Alignment.MIDDLE_CENTER);
-                horizontal6.addComponent(horizontal3);
-                horizontal6.setWidth("200px");
-                horizontal6.setComponentAlignment(horizontal3, Alignment.MIDDLE_RIGHT);
+            horizontal3.addComponent(counter2);
+            horizontal3.setComponentAlignment(counter2, Alignment.MIDDLE_RIGHT);
+            horizontal3.addComponent(image9);
+            horizontal3.setComponentAlignment(image9, Alignment.MIDDLE_CENTER);
+            horizontal6.addComponent(horizontal3);
+            horizontal6.setWidth("200px");
+            horizontal6.setComponentAlignment(horizontal3, Alignment.MIDDLE_RIGHT);
 
-            } else {
-                horizontal3.removeAllComponents();
+        } else {
+            horizontal3.removeAllComponents();
+        }
+        if (!tekstPole4.isEmpty()) {
+
+
+            byte[][] ek44 = AES.encrypt(String.valueOf(j + 3).getBytes(), key.getBytes());
+            for (int m = 0; m < 16; m++) {
+                ive[m] = ek44[4][m + 144];
             }
-            if (!tekstPole4.isEmpty()) {
+            for (byte b : ive) {
+                sb8.append(String.format("%02X ", b));
+                counter3.setValue(String.valueOf(j + 3));
+                counter3.addStyleName("Wyniki");
+                ekPole4.setValue(sb8.toString());
+                tekstHexPole4.setValue(toHex(tekstPole4.getValue()));
+                horizontal4.addComponent(counter3);
+                horizontal4.setComponentAlignment(counter3, Alignment.MIDDLE_RIGHT);
+                horizontal4.addComponent(image10);
+                horizontal7.addComponent(horizontal4);
+                horizontal7.setWidth("200px");
+                horizontal7.setComponentAlignment(horizontal4, Alignment.MIDDLE_RIGHT);
 
-
-                byte[][] ek44 = AES.encrypt(String.valueOf(j + 3).getBytes(), key.getBytes());
-                for (int m = 0; m < 16; m++) {
-                    ive[m] = ek44[4][m + 144];
-                }
-                for (byte b : ive) {
-                    sb8.append(String.format("%02X ", b));
-                    counter3.setValue(String.valueOf(j + 3));
-                    counter3.addStyleName("Wyniki");
-                    ekPole4.setValue(sb8.toString());
-                    tekstHexPole4.setValue(toHex(tekstPole4.getValue()));
-                    horizontal4.addComponent(counter3);
-                    horizontal4.setComponentAlignment(counter3, Alignment.MIDDLE_RIGHT);
-                    horizontal4.addComponent(image10);
-                    horizontal7.addComponent(horizontal4);
-                    horizontal7.setWidth("200px");
-                    horizontal7.setComponentAlignment(horizontal4, Alignment.MIDDLE_RIGHT);
-
-                }
-            } else {
-                horizontal4.removeAllComponents();
             }
+        } else {
+            horizontal4.removeAllComponents();
+        }
 
 
-            ekPanel.setWidth("78px");
-            ekPanel.setHeight("78px");
-            ekPanel.setContent(ekPole);
+        ekPanel.setWidth("78px");
+        ekPanel.setHeight("78px");
+        ekPanel.setContent(ekPole);
 
-            tekstHexPanel.setWidth("78px");
-            tekstHexPanel.setHeight("78px");
-            tekstHexPanel.setContent(tekstHexPole);
-
-
-            ekPanel2.setWidth("78px");
-            ekPanel2.setHeight("78px");
-            ekPanel2.setContent(ekPole2);
-
-            tekstHexPanel2.setWidth("78px");
-            tekstHexPanel2.setHeight("78px");
-            tekstHexPanel2.setContent(tekstHexPole2);
+        tekstHexPanel.setWidth("78px");
+        tekstHexPanel.setHeight("78px");
+        tekstHexPanel.setContent(tekstHexPole);
 
 
-            ekPanel3.setWidth("78px");
-            ekPanel3.setHeight("78px");
-            ekPanel3.setContent(ekPole3);
+        ekPanel2.setWidth("78px");
+        ekPanel2.setHeight("78px");
+        ekPanel2.setContent(ekPole2);
+
+        tekstHexPanel2.setWidth("78px");
+        tekstHexPanel2.setHeight("78px");
+        tekstHexPanel2.setContent(tekstHexPole2);
 
 
-            tekstHexPanel3.setWidth("78px");
-            tekstHexPanel3.setHeight("78px");
-            tekstHexPanel3.setContent(tekstHexPole3);
+        ekPanel3.setWidth("78px");
+        ekPanel3.setHeight("78px");
+        ekPanel3.setContent(ekPole3);
 
 
-            ekPanel4.setWidth("78px");
-            ekPanel.setHeight("78px");
-            ekPanel4.setContent(ekPole4);
-
-            tekstHexPanel4.setWidth("78px");
-            tekstHexPanel4.setHeight("78px");
-            tekstHexPanel4.setContent(tekstHexPole4);
+        tekstHexPanel3.setWidth("78px");
+        tekstHexPanel3.setHeight("78px");
+        tekstHexPanel3.setContent(tekstHexPole3);
 
 
-            horizontal8.addComponents(horizontal5, horizontal6, horizontal7);
-            horizontal8.setSizeUndefined();
-            horizontal8.setComponentAlignment(horizontal5, Alignment.MIDDLE_RIGHT);
-            horizontal8.setComponentAlignment(horizontal6, Alignment.MIDDLE_RIGHT);
-            horizontal8.setComponentAlignment(horizontal7, Alignment.MIDDLE_RIGHT);
+        ekPanel4.setWidth("78px");
+        ekPanel.setHeight("78px");
+        ekPanel4.setContent(ekPole4);
+
+        tekstHexPanel4.setWidth("78px");
+        tekstHexPanel4.setHeight("78px");
+        tekstHexPanel4.setContent(tekstHexPole4);
 
 
-            if (!tekstPole.isEmpty()) {
-
-                vertical.addComponents(counter4, image11, ekPanel);
-
-                vertical.setComponentAlignment(counter4, Alignment.BOTTOM_CENTER);
-                vertical.setComponentAlignment(image11, Alignment.TOP_RIGHT);
-                vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
+        horizontal8.addComponents(horizontal5, horizontal6, horizontal7);
+        horizontal8.setSizeUndefined();
+        horizontal8.setComponentAlignment(horizontal5, Alignment.MIDDLE_RIGHT);
+        horizontal8.setComponentAlignment(horizontal6, Alignment.MIDDLE_RIGHT);
+        horizontal8.setComponentAlignment(horizontal7, Alignment.MIDDLE_RIGHT);
 
 
-                vertical2.addComponents(tekstHexPanel, image, wynikPanel);
-                vertical2.setWidth("100%");
+        if (!tekstPole.isEmpty()) {
+
+            vertical.addComponents(counter4, image11, ekPanel);
+
+            vertical.setComponentAlignment(counter4, Alignment.BOTTOM_CENTER);
+            vertical.setComponentAlignment(image11, Alignment.TOP_RIGHT);
+            vertical.setComponentAlignment(ekPanel, Alignment.BOTTOM_RIGHT);
 
 
-                vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
-                vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
-
-            } else {
-                vertical.removeAllComponents();
-                vertical2.removeAllComponents();
-                vertical2.addComponent(tekstPole);
-            }
-            if (!tekstPole2.isEmpty()) {
-                vertical3.addComponents(ekPanel2, image5);
-                vertical3.setComponentAlignment(image5, Alignment.TOP_CENTER);
-                vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
+            vertical2.addComponents(tekstHexPanel, image, wynikPanel);
+            vertical2.setWidth("100%");
 
 
-                vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
-                vertical4.setWidth("100%");
-                vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
-                vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
-            } else {
-                vertical3.removeAllComponents();
-                vertical4.removeAllComponents();
-                vertical4.addComponent(tekstPole2);
-            }
-            if (!tekstPole3.isEmpty()) {
-                vertical5.addComponents(ekPanel3, image6);
-                vertical5.setWidth("78px");
-                vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_RIGHT);
+            vertical2.setComponentAlignment(tekstHexPanel, Alignment.TOP_CENTER);
+            vertical2.setComponentAlignment(wynikPanel, Alignment.TOP_CENTER);
+
+        } else {
+            vertical.removeAllComponents();
+            vertical2.removeAllComponents();
+            vertical2.addComponent(tekstPole);
+        }
+        if (!tekstPole2.isEmpty()) {
+            vertical3.addComponents(ekPanel2, image5);
+            vertical3.setComponentAlignment(image5, Alignment.TOP_CENTER);
+            vertical3.setComponentAlignment(ekPanel2, Alignment.TOP_RIGHT);
 
 
-                vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
-                vertical6.setWidth("100%");
-                vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
-                vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
-            } else {
-                vertical5.removeAllComponents();
-                vertical6.removeAllComponents();
-                vertical6.addComponent(tekstPole3);
-            }
-            if (!tekstPole4.isEmpty()) {
-                vertical7.addComponents(ekPanel4, image7);
-                vertical7.setWidth("78px");
-                vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_RIGHT);
+            vertical4.addComponents(tekstHexPanel2, image2, wynikPanel2);
+            vertical4.setWidth("100%");
+            vertical4.setComponentAlignment(tekstHexPanel2, Alignment.TOP_CENTER);
+            vertical4.setComponentAlignment(wynikPanel2, Alignment.TOP_CENTER);
+        } else {
+            vertical3.removeAllComponents();
+            vertical4.removeAllComponents();
+            vertical4.addComponent(tekstPole2);
+        }
+        if (!tekstPole3.isEmpty()) {
+            vertical5.addComponents(ekPanel3, image6);
+            vertical5.setWidth("78px");
+            vertical5.setComponentAlignment(ekPanel3, Alignment.TOP_RIGHT);
 
 
-                vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
-                vertical8.setWidth("100%");
-                vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
-                vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
-            } else {
-                vertical7.removeAllComponents();
-                vertical8.removeAllComponents();
-                vertical8.addComponent(tekstPole4);
-            }
+            vertical6.addComponents(tekstHexPanel3, image3, wynikPanel3);
+            vertical6.setWidth("100%");
+            vertical6.setComponentAlignment(tekstHexPanel3, Alignment.TOP_CENTER);
+            vertical6.setComponentAlignment(wynikPanel3, Alignment.TOP_CENTER);
+        } else {
+            vertical5.removeAllComponents();
+            vertical6.removeAllComponents();
+            vertical6.addComponent(tekstPole3);
+        }
+        if (!tekstPole4.isEmpty()) {
+            vertical7.addComponents(ekPanel4, image7);
+            vertical7.setWidth("78px");
+            vertical7.setComponentAlignment(ekPanel4, Alignment.TOP_RIGHT);
+
+
+            vertical8.addComponents(tekstHexPanel4, image4, wynikPanel4);
+            vertical8.setWidth("100%");
+            vertical8.setComponentAlignment(tekstHexPanel4, Alignment.TOP_CENTER);
+            vertical8.setComponentAlignment(wynikPanel4, Alignment.TOP_CENTER);
+        } else {
+            vertical7.removeAllComponents();
+            vertical8.removeAllComponents();
+            vertical8.addComponent(tekstPole4);
+        }
 
 
     }

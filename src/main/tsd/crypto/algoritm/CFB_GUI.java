@@ -98,7 +98,9 @@ public class CFB_GUI extends HorizontalLayout implements View {
         calytekstPole.setWordwrap(true);
         calytekstPole.setMaxLength(64);
         ivPole.setValue("Wektor");
+        ivPole.setMaxLength(16);
         kluczPole.setValue("Klucz");
+        kluczPole.setMaxLength(16);
         calytekstPole.setValue("Tekst do zaszyfrowania");
         tekstPole.setMaxLength(16);
         tekstPole2.setMaxLength(16);
@@ -185,8 +187,78 @@ public class CFB_GUI extends HorizontalLayout implements View {
                     }
                 });
 
+        Button bAES = new Button("AES",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CFB");
+                        getUI().getNavigator().addView("CFB", new CFB_GUI());
+                        getUI().getNavigator().navigateTo("AES");
+
+                    }
+                });
+
+        Button bCBC = new Button("CBC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CFB");
+                        getUI().getNavigator().addView("CFB", new CFB_GUI());
+                        getUI().getNavigator().navigateTo("CBC");
+
+                    }
+                });
+
+        Button bOFB = new Button("OFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CFB");
+                        getUI().getNavigator().addView("CFB", new CFB_GUI());
+                        getUI().getNavigator().navigateTo("OFB");
+
+                    }
+                });
+
+        Button bCTR = new Button("CTR",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CFB");
+                        getUI().getNavigator().addView("CFB", new CFB_GUI());
+                        getUI().getNavigator().navigateTo("CTR");
+
+                    }
+                });
+
+        Button bHMAC = new Button("HMAC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CFB");
+                        getUI().getNavigator().addView("CFB", new CFB_GUI());
+                        getUI().getNavigator().navigateTo("HMAC");
+
+                    }
+                });
+
         vertical.setHeight("330px");
-        vertical11.addComponents(vertical9, calytekstPole, b);
+        vertical11.addComponents(vertical9, calytekstPole, b, bAES, bCBC, bOFB, bCTR, bHMAC);
 
         //vertical.setComponentAlignment(vertical9,Alignment.TOP_LEFT);
         //vertical.setComponentAlignment(b,Alignment.TOP_LEFT);
@@ -195,7 +267,7 @@ public class CFB_GUI extends HorizontalLayout implements View {
         vertical6.addComponents(tekstPole3);
         vertical8.addComponents(tekstPole4);
 
-        addComponents(vertical, vertical10, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8, vertical11);
+        addComponents(vertical11, vertical, vertical10, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8);
         setComponentAlignment(vertical3, Alignment.BOTTOM_LEFT);
         setComponentAlignment(vertical5, Alignment.BOTTOM_LEFT);
         setComponentAlignment(vertical7, Alignment.BOTTOM_LEFT);

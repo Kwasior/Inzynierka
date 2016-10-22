@@ -9,9 +9,7 @@ import com.vaadin.ui.*;
 import java.io.File;
 import java.math.BigInteger;
 
-/**
- * Created by Kwasior on 2015-12-25.
- */
+
 public class CBC_GUI extends HorizontalLayout implements View {
     private final TextField tekstPole = new TextField();
     private final TextField tekstPole2 = new TextField();
@@ -115,12 +113,16 @@ public class CBC_GUI extends HorizontalLayout implements View {
         calytekstPole.setWordwrap(true);
         calytekstPole.setMaxLength(64);
         ivPole.setValue("Wektor");
+
         kluczPole.setValue("Klucz");
+
         calytekstPole.setValue("Tekst do zaszyfrowania");
         tekstPole.setMaxLength(16);
         tekstPole2.setMaxLength(16);
         tekstPole3.setMaxLength(16);
         tekstPole4.setMaxLength(16);
+        kluczPole.setMaxLength(16);
+        ivPole.setMaxLength(16);
 
         setSpacing(true);
         addStyleName("CBC_VSPACING");
@@ -262,8 +264,75 @@ public class CBC_GUI extends HorizontalLayout implements View {
 
 
                 });
+
+        Button bAES = new Button("AES",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CBC");
+                        getUI().getNavigator().addView("CBC", new CBC_GUI());
+                        getUI().getNavigator().navigateTo("AES");
+
+                    }
+                });
+        Button bCFB = new Button("CFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CBC");
+                        getUI().getNavigator().addView("CBC", new CBC_GUI());
+                        getUI().getNavigator().navigateTo("CFB");
+
+                    }
+                });
+        Button bOFB = new Button("OFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CBC");
+                        getUI().getNavigator().addView("CBC", new CBC_GUI());
+                        getUI().getNavigator().navigateTo("OFB");
+
+                    }
+                });
+        Button bCTR = new Button("CTR",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CBC");
+                        getUI().getNavigator().addView("CBC", new CBC_GUI());
+                        getUI().getNavigator().navigateTo("CTR");
+
+                    }
+                });
+        Button bHMAC = new Button("HMAC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("CBC");
+                        getUI().getNavigator().addView("CBC", new CBC_GUI());
+                        getUI().getNavigator().navigateTo("HMAC");
+
+                    }
+                });
+
         //addComponent(b);
-        vertical.addComponents(kluczPole, ivPole, calytekstPole, b);
+        vertical.addComponents(kluczPole, ivPole, calytekstPole, b, bAES, bCFB, bOFB, bCTR, bHMAC);
         //vertical.setHeight("190px");
         vertical.setComponentAlignment(kluczPole, Alignment.TOP_LEFT);
         vertical.setComponentAlignment(ivPole, Alignment.TOP_LEFT);
@@ -273,7 +342,7 @@ public class CBC_GUI extends HorizontalLayout implements View {
         vertical6.addComponent(tekstPole3);
         vertical8.addComponent(tekstPole4);
 
-        addComponents(vertical9, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8, vertical);
+        addComponents(vertical, vertical9, vertical2, vertical3, vertical4, vertical5, vertical6, vertical7, vertical8);
     }
 
     private void display() {

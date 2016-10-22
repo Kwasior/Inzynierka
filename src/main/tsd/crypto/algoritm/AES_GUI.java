@@ -5,6 +5,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.Sizeable;
+import javafx.application.Application;
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import org.apache.commons.codec.binary.Hex;
 import com.vaadin.server.VaadinRequest;
@@ -38,7 +39,7 @@ public class AES_GUI extends VerticalLayout implements View {
     VerticalLayout vertical9 = new VerticalLayout();
 
     byte[][] tmp = new byte[4][4];
-    Navigator navigator;
+    //Navigator navigator;
 
     public AES_GUI() {
 
@@ -138,6 +139,71 @@ public class AES_GUI extends VerticalLayout implements View {
 
                     }
                 });
+        Button bCBC = new Button("CBC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("AES");
+                        getUI().getNavigator().addView("AES", new AES_GUI());
+                        getUI().getNavigator().navigateTo("CBC");
+
+                    }
+                });
+        Button bCFB = new Button("CFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("AES");
+                        getUI().getNavigator().addView("AES", new AES_GUI());
+                        getUI().getNavigator().navigateTo("CFB");
+
+                    }
+                });
+        Button bOFB = new Button("OFB",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("AES");
+                        getUI().getNavigator().addView("AES", new AES_GUI());
+                        getUI().getNavigator().navigateTo("OFB");
+
+                    }
+                });
+        Button bCTR = new Button("CTR",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("AES");
+                        getUI().getNavigator().addView("AES", new AES_GUI());
+                        getUI().getNavigator().navigateTo("CTR");
+
+                    }
+                });
+        Button bHMAC = new Button("HMAC",
+                new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+
+
+                        getUI().getNavigator().removeView("AES");
+                        getUI().getNavigator().addView("AES", new AES_GUI());
+                        getUI().getNavigator().navigateTo("HMAC");
+
+                    }
+                });
 
         runda.setWidth("105px");
         runda.setStyleName("Wyniki");
@@ -146,6 +212,7 @@ public class AES_GUI extends VerticalLayout implements View {
         GridLayout grid3 = new GridLayout(1, 1);
         horizontal.addComponents(poleTekstu, poleTekstu2, b);
         horizontal4.addComponents(runda, b2, b3, b4, b5);
+        horizontal3.addComponents(bCBC, bCFB, bOFB, bCTR, bHMAC);
         //vertical8.addComponents(horizontal, horizontal3);
         // horizontal.setWidth("100%");
 
@@ -160,6 +227,7 @@ public class AES_GUI extends VerticalLayout implements View {
         grid.setComponentAlignment(horizontal4, Alignment.MIDDLE_LEFT);
 
 
+
         //grid.addComponent(horizontal3,0,2,1,2)
 
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
@@ -167,6 +235,7 @@ public class AES_GUI extends VerticalLayout implements View {
         addComponent(grid3);
         addComponent(grid2);
         addComponent(grid);
+        addComponent(horizontal3);
         //setComponentAlignment(grid, Alignment.MIDDLE_CENTER);
 
         //addComponent(horizontal);
@@ -213,7 +282,9 @@ public class AES_GUI extends VerticalLayout implements View {
         Label tekst25 = new Label("1");
 
         Label tekst26 = new Label("Start of round");
+        tekst26.setHeight("100%");
         Label tekst27 = new Label("SubBytes");
+        tekst27.setHeight("100%");
         Label tekst28 = new Label("ShiftRows");
         Label tekst29 = new Label("MixColumns");
         Label tekst30 = new Label("RoundKey");

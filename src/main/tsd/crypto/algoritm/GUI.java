@@ -19,7 +19,7 @@ public class GUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        getPage().setTitle("Navigation Example");
+        getPage().setTitle("Aplikacja");
 
         // Create a navigator to control the views
         navigator = new Navigator(this, this);

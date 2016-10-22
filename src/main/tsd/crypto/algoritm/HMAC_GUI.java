@@ -9,9 +9,7 @@ import com.vaadin.ui.*;
 import java.io.File;
 import java.math.BigInteger;
 
-/**
- * Created by Kwasior on 2015-12-25.
- */
+
 public class HMAC_GUI extends HorizontalLayout implements View
 
 {
@@ -91,7 +89,8 @@ public class HMAC_GUI extends HorizontalLayout implements View
 
         horizontal.addStyleName("CBC_VSPACING");
         horizontal.setSpacing(true);
-        vertical.addComponents(tekstPole, tekstPole2, b, b2, b3);
+        horizontal2.addComponents(b, b3, b2);
+        vertical.addComponents(tekstPole, tekstPole2, horizontal2, bAES, bCBC, bCFB, bOFB, bCTR);
 
 
         vertical4.addComponents(vertical, horizontal, vertical2);
@@ -161,7 +160,7 @@ public class HMAC_GUI extends HorizontalLayout implements View
                     display(1);
                 }
             });
-    Button b2 = new Button("+",
+    Button b2 = new Button(">",
             new Button.ClickListener() {
                 @Override
 
@@ -173,7 +172,7 @@ public class HMAC_GUI extends HorizontalLayout implements View
                 }
 
             });
-    Button b3 = new Button("-",
+    Button b3 = new Button("<",
             new Button.ClickListener() {
                 @Override
 
@@ -184,6 +183,74 @@ public class HMAC_GUI extends HorizontalLayout implements View
                     display(step);
                 }
 
+            });
+
+    Button bAES = new Button("AES",
+            new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent event) {
+
+
+
+                    getUI().getNavigator().removeView("HMAC");
+                    getUI().getNavigator().addView("HMAC", new HMAC_GUI());
+                    getUI().getNavigator().navigateTo("AES");
+
+                }
+            });
+
+    Button bCBC = new Button("CBC",
+            new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent event) {
+
+
+
+                    getUI().getNavigator().removeView("HMAC");
+                    getUI().getNavigator().addView("HMAC", new HMAC_GUI());
+                    getUI().getNavigator().navigateTo("CBC");
+
+                }
+            });
+
+    Button bCFB = new Button("CFB",
+            new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent event) {
+
+
+
+                    getUI().getNavigator().removeView("HMAC");
+                    getUI().getNavigator().addView("HMAC", new HMAC_GUI());
+                    getUI().getNavigator().navigateTo("CFB");
+
+                }
+            });
+    Button bOFB = new Button("OFB",
+            new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent event) {
+
+
+
+                    getUI().getNavigator().removeView("HMAC");
+                    getUI().getNavigator().addView("HMAC", new HMAC_GUI());
+                    getUI().getNavigator().navigateTo("OFB");
+
+                }
+            });
+    Button bCTR = new Button("CTR",
+            new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent event) {
+
+
+
+                    getUI().getNavigator().removeView("HMAC");
+                    getUI().getNavigator().addView("HMAC", new HMAC_GUI());
+                    getUI().getNavigator().navigateTo("CTR");
+
+                }
             });
 
 
